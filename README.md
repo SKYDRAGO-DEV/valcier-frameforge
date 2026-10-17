@@ -1,32 +1,65 @@
-# VALCIER FRAMEFORGE — GitHub Import Gateway
+# VALCIER FRAMEFORGE v0.1
 
-This repository is currently in the **source-import stage**, not a deployed AI video generation service.
+Original, independently implemented cinematic shot-planning and workflow research MVP. This repository contains the FastAPI + SQLite backend, responsive browser interface, a DAG validator, demo job lifecycle, budget check and automated tests.
 
-## One-time source upload
+**Important:** This is a DEMO creative-planning engine. It **does not generate AI images or videos**. No paid AI media provider is connected.
 
-1. Download the **VALCIER_FRAMEFORGE_GitHub_Ready.zip** archive provided in the ChatGPT conversation.
-2. On this repository page choose **Add file → Upload files**.
-3. Upload the archive **as the exact filename** `VALCIER_FRAMEFORGE_GitHub_Ready.zip` at the repository root.
-4. Commit it to `main`. Do not manually extract it in GitHub's website.
-5. Open **Actions → Import verified FRAMEFORGE source package** and verify the green check.
+## Get started in GitHub Codespaces
 
-The workflow accepts **only** the archive with SHA-256:
-`b5b933233cadeef78470e3e730bc369027ccd564abb446e43f6829efcfde1534`
-
-On upload, the workflow validates the checksum, safely unpacks the archive, runs Python tests and an API smoke check, commits the extracted source and removes the uploaded ZIP. If Actions are disabled or write permissions are restricted, enable GitHub Actions and allow the job to write repository contents, then rerun. No test result is claimed before the source is imported.
-
-## Run the source after successful import
-
-GitHub Actions is CI, **not** 24/7 web hosting. For interactive development use **Code → Codespaces → Create codespace on main**. In its terminal run:
+1. In this repository choose **Code → Codespaces → Create codespace on main**.
+2. The devcontainer installs the Python dependencies.
+3. In the Codespaces terminal run:
 
 ```bash
 bash scripts/run-codespaces.sh
 ```
 
-Open forwarded port 8000 and keep port visibility **private**. The app is a local/demo-only research prototype and does not generate real images or video. Never expose demo mode on a public port. Stop the Codespace when not in use.
+4. Go to **Ports** and open port **8000** using the forwarded-port link. **Keep visibility PRIVATE**.
 
-For local running and full research notes, see the actual application README after source import.
+GitHub Actions is automated testing, not permanent web hosting. The application only runs while your Codespace is active. Codespaces usage and billing limits may apply.
 
-**Security notice:** This repository is currently **public**. Do not commit API tokens, `.env`, production data, or proprietary source. To change visibility visit **Settings → General → Danger Zone → Change repository visibility**.
+## Run locally
 
-Built as an original independent creative-studio MVP, not a copy of Higgsfield internals.
+Python 3.11+ required.
+
+Windows: execute `RUN_WINDOWS.bat`.
+
+macOS/Linux: `sh RUN_MAC_LINUX.sh`.
+
+Or run directly:
+
+```bash
+cd backend
+python -m pip install -r requirements.txt
+FRAMEFORGE_LOCAL_DEMO=1 python -m uvicorn frameforge.api:app --host 127.0.0.1 --port 8000
+```
+
+Open http://127.0.0.1:8000. API documentation: http://127.0.0.1:8000/docs.
+
+## Modules
+
+- **Creative Studio:** deterministic 3-shot storyboards with cinematic intent, camera movement, lens, duration and tone.
+- **Workflow Canvas:** drag-positioned nodes, edge validation, cycle rejection and topological ordering. Remote media nodes remain disabled.
+- **Generation Jobs:** queue, run and cancel DEMO jobs; result JSON explicitly reports `media_generated: false`.
+- **Project Library:** store and inspect projects in SQLite; export structured JSON.
+- **Settings & API:** provider registry and illustrative cost/budget check.
+- **Tests:** 13 tests covering API, job idempotency, graph validation, authorization and smoke checks.
+
+## Verify
+
+```bash
+cd backend
+python -m pytest -q
+```
+
+CI workflow: [Frameforge CI](.github/workflows/ci.yml). See [Actions](../../actions) for current remote results.
+
+## Security and limitations
+
+- Public repository: NEVER commit provider API keys, tokens, SQLite databases, production assets or private data.
+- Demo mode bypasses API authentication and MUST NOT be Internet-facing; port 8000 must remain private.
+- Running outside demo mode requires `FRAMEFORGE_API_TOKEN`, but this is still not a production-grade multi-user architecture.
+- Pending for production: tenant-aware auth, managed PostgreSQL, migrations, background workers, authorized commercial media API adapters, storage, rate limiting, auditing and billing.
+- No proprietary Higgsfield code, assets, weights or internal systems are included.
+
+The project is a research MVP, not a commercial production service.
