@@ -22,6 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Run offline API diagnostic tests
         run: python -m unittest discover -s scripts -p 'test_github_ci_health.py' -v
