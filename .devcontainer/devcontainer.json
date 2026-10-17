@@ -1,0 +1,23 @@
+{
+  "name": "VALCIER FRAMEFORGE — Private Codespace",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postCreateCommand": "python -m pip install -r backend/requirements.txt",
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "FRAMEFORGE local demo (keep PRIVATE)",
+      "onAutoForward": "notify",
+      "visibility": "private"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
+}
