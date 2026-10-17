@@ -54,6 +54,15 @@ python -m pytest -q
 
 CI workflow: [Frameforge CI](.github/workflows/ci.yml). See [Actions](../../actions) for current remote results.
 
+## Maintenance and contributions
+
+- [Contribution and local verification guide](CONTRIBUTING.md)
+- [Security policy and responsible disclosure](SECURITY.md)
+- [Automated dependency update proposals](.github/dependabot.yml) for Python packages and GitHub Actions; updates are not automatically merged
+- [Issue tracker](../../issues) for reproducible bugs or proposed improvements (never disclose security exploits or secrets publicly)
+
+This repository is public for demonstration and research; **public visibility alone does not grant an open-source licence**. Check the repository's actual licence status before reusing the code.
+
 ## Security and limitations
 
 - Public repository: NEVER commit provider API keys, tokens, SQLite databases, production assets or private data.

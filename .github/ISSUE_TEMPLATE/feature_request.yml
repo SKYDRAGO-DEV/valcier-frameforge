@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a scoped improvement to FRAMEFORGE
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: Describe the user problem rather than just a proposed implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Include a minimal user journey, alternatives, and success criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: implications
+    attributes:
+      label: Security, privacy, cost and compatibility
+      description: Identify any external APIs, permissions, data retention or paid providers.
+  - type: checkboxes
+    id: honesty
+    attributes:
+      label: Project scope
+      options:
+        - label: I understand this is currently a local demo, not a live AI media generation service.
+          required: true

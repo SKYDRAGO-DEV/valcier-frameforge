@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible issue in the FRAMEFORGE demo
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not disclose credentials, sensitive content or exploit details.
+        For vulnerabilities, follow SECURITY.md instead of opening a public issue.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the observed behaviour.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include a minimal non-sensitive input and reproducible steps.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Version or commit SHA
+      description: Which version or commit did you test?
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Local (Windows)
+        - Local (macOS)
+        - Local (Linux)
+        - GitHub Codespaces
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked existing issues.
+          required: true
+        - label: I removed keys, tokens, sensitive user data and private media.
+          required: true
