@@ -1,0 +1,27 @@
+name: GitHub API Diagnostic Tests
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/github_ci_health.py'
+      - 'scripts/test_github_ci_health.py'
+      - '.github/workflows/github-api-health.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/github_ci_health.py'
+      - 'scripts/test_github_ci_health.py'
+      - '.github/workflows/github-api-health.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline API diagnostic tests
+        run: python -m unittest discover -s scripts -p 'test_github_ci_health.py' -v
